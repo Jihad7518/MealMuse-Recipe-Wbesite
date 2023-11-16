@@ -114,3 +114,52 @@ exports.exploreRandom = async(req, res) => {
   }
 } 
 
+
+/**
+ * GET /submit-recipe
+ * Submit Recipe
+*/
+exports.submitRecipe = async(req, res) => {
+  const infoErrorsObj = req.flash('infoErrors');
+  const infoSubmitObj = req.flash('infoSubmit');
+  res.render('submit-recipe', { title: 'MealMuse - Submit Recipe', infoErrorsObj, infoSubmitObj  } );
+}
+
+/**
+ * POST /submit-recipe
+ * Submit Recipe
+*/
+exports.submitRecipeOnPost = async (req, res) => {
+  try {
+    let imageUploadFile;
+    let uploadPath;
+    let newImageName;
+
+    if (!req.files || Object.keys(req.files).length === 0) {
+      console.log('No Files were uploaded.');
+    } else {
+      imageUploadFile = req.files.image;
+      newImageName = Date.now() + imageUploadFile.name;
+      uploadPath = require('path').resolve('./') + '/public/uploads/' + newImageName;
+
+      imageUploadFile.mv(uploadPath, function(err) {
+        if (err) return res.status(500).send(err);
+      });
+    }
+
+    const newRecipe = new Recipe({
+      name: req.body.name,
+      description: req.body.description,
+      email: req.body.email,
+      ingredients: req.body.ingredients,
+      category: req.body.category,
+      image: newImageName,
+      kcal: req.body.kcal,
+      fat: req.body.fat,
+      saturates: req.body.saturates,
+      carbs: req.body.carbs,
+      sugar: req.body.sugar,
+      fiber: req.body.fiber,
+      protein: req.body.protein,
+      salt: req.body.salt
+    });
