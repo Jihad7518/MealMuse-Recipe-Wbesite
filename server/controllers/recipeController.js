@@ -23,3 +23,48 @@ exports.homepage = async(req, res) => {
   }
 }
 
+
+/**
+ * GET /categories
+ * Categories 
+*/
+exports.exploreCategories = async(req, res) => {
+  try {
+    const limitNumber = 20;
+    const categories = await Category.find({}).limit(limitNumber);
+    res.render('categories', { title: 'MealMuse - Categoreis', categories } );
+  } catch (error) {
+    res.satus(500).send({message: error.message || "Error Occured" });
+  }
+} 
+
+
+/**
+ * GET /categories/:id
+ * Categories By Id
+*/
+exports.exploreCategoriesById = async(req, res) => { 
+  try {
+    let categoryId = req.params.id;
+    const limitNumber = 20;
+    const categoryById = await Recipe.find({ 'category': categoryId }).limit(limitNumber);
+    res.render('categories', { title: 'MealMuse - Categoreis', categoryById } );
+  } catch (error) {
+    res.satus(500).send({message: error.message || "Error Occured" });
+  }
+} 
+ 
+/**
+ * GET /recipe/:id
+ * Recipe 
+*/
+exports.exploreRecipe = async(req, res) => {
+  try {
+    let recipeId = req.params.id;
+    const recipe = await Recipe.findById(recipeId);
+    res.render('recipe', { title: 'MealMuse - Recipe', recipe } );
+  } catch (error) {
+    res.satus(500).send({message: error.message || "Error Occured" });
+  }
+} 
+
