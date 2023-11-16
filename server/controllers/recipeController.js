@@ -23,7 +23,6 @@ exports.homepage = async(req, res) => {
   }
 }
 
-
 /**
  * GET /categories
  * Categories 
@@ -67,6 +66,7 @@ exports.exploreRecipe = async(req, res) => {
     res.satus(500).send({message: error.message || "Error Occured" });
   }
 } 
+
 
 /**
  * POST /search
@@ -163,3 +163,40 @@ exports.submitRecipeOnPost = async (req, res) => {
       protein: req.body.protein,
       salt: req.body.salt
     });
+
+    await newRecipe.save();
+
+    req.flash('infoSubmit', 'Recipe has been added.');
+    res.redirect('/submit-recipe');
+  } catch (error) {
+    console.error(error);
+    req.flash('infoErrors', 'An error occurred while submitting the recipe.');
+    res.redirect('/submit-recipe');
+  }
+};
+
+
+
+
+// Delete Recipe
+// async function deleteRecipe(){
+//   try {
+//     await Recipe.deleteOne({ name: 'New Recipe From Form' });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+// deleteRecipe();
+
+
+// Update Recipe
+// async function updateRecipe(){
+//   try {
+//     const res = await Recipe.updateOne({ name: 'New Recipe' }, { name: 'New Recipe Updated' });
+//     res.n; // Number of documents matched
+//     res.nModified; // Number of documents modified
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+// updateRecipe();
