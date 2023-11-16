@@ -1,1 +1,55 @@
+<% if(recipe != null ) { %>
 
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><%- recipe.name %></li>
+    </ol>
+  </nav>
+
+  <div class="row">
+
+    <div class="col-12 col-md-5">
+      <img src="/uploads/<%- recipe.image %>" class="img-fluid sticky-top" style="top: 20px; width: 100%;" alt="<%- recipe.name %>" loading="lazy">
+    </div>
+
+    <!-- Nutrition Information per serving -->
+    <div class="col-10 col-md-3">
+      <h4>Nutrition Information per serving</h4>
+      <table class="table table-bordered">
+        <tr>
+          <th>kcal</th>
+          <td><%- recipe.kcal %> kcal</td>
+        </tr>
+        <tr>
+          <th>Fat (g)</th>
+          <td><%- recipe.fat %>g</td>
+        </tr>
+        <tr>
+          <th>Saturates (g)</th>
+          <td><%- recipe.saturates %>g</td>
+        </tr>
+        <tr>
+          <th>Carbs (g)</th>
+          <td><%- recipe.carbs %>g</td>
+        </tr>
+        <tr>
+          <th>Sugar (g)</th>
+          <td><%- recipe.sugar %>g</td>
+        </tr>
+        <tr>
+          <th>Fiber (g)</th>
+          <td><%- recipe.fiber %>g</td>
+        </tr>
+        <tr>
+          <th>Protein (g)</th>
+          <td><%- recipe.protein %>g</td>
+        </tr>
+        <tr>
+          <th>Salt (g)</th>
+          <td><%- recipe.salt %>g</td>
+        </tr>
+      </table>
+      <h4>Rating</h4>
+      <input type="number" name="rating" class="form-control" min="1" max="5" style="width: 60px;">
+    </div>
