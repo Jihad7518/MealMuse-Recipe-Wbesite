@@ -80,3 +80,36 @@
           <input type="text" name="salt" id="salt" class="form-control">
         </div>
         
+
+        <div class="col-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea name="description" id="description" class="form-control" cols="30" rows="4"></textarea>
+        </div>
+
+        <div class="col-12">
+          <label for="name" class="form-label">Ingredients</label><br>
+          <small>Example: Ice</small>
+          <div class="ingredientList">
+            <div class="ingredeintDiv mb-1">
+              <input type="text" name="ingredients" class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Ingredient</button>
+        </div>
+
+        <div class="col-12">
+          <label for="category">Select Category</label>
+          <select class="form-select form-control" name="category" aria-label="Category">
+            <option selected>Select Category</option>
+            <option value="Thai">Thai</option>
+            <option value="American">American</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Bengali">Bengali</option>
+            <option value="Indian">Indian</option>
+            <option value="Spanish">Spanish</option>
+          </select>
+        </div>
